@@ -76,7 +76,7 @@ img {
   width: clamp(270px, 35%, 400px);
   background-color: white;
   padding: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
 }
 
 .send-input-field-flex {
@@ -196,8 +196,38 @@ svg {
   color: #fff;
 }
 
-.send-btn {
-  
+.version {
+  font-weight: bolder;
+}
+
+.footer {
+  background-color: rgba(7, 110, 236, 0.927);
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+  gap: 5px;
+}
+
+.link-git {
+  color: white;
+  text-decoration: underline;
+}
+
+.redirect-main {
+  display: flex;
+  justify-content: center;
+}
+
+.redirect {
+  color: white;
+  text-align: center;
 }
 
 

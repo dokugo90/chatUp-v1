@@ -34,6 +34,7 @@ import {
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 //import 'firebase/messaging';
 import { firebaseConfig } from 'firebaseconfig';
+import Link from 'next/link';
 
 export default function Home() {
   "use client";
@@ -181,6 +182,7 @@ export default function Home() {
       <nav>
         <ul>
           <li className='title'>ChatUp</li>
+          <li className='version'>version 1.0.0</li>
         </ul>
         <div className='account-flex'>
         <img title={`${username}`} className='pfp' src={profilePic}></img>
@@ -231,6 +233,9 @@ export default function Home() {
 </button>
     </div>
     </div>
+    <div class="footer">
+    Created by <Link className='link-git' href="https://github.com/dokugo90/chatUp-v1.git">dokugo90</Link> &copy; {new Date().getFullYear()}
+  </div>
     </main>
     {
       offline ?
