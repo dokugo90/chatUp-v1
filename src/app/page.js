@@ -32,9 +32,8 @@ export default function Home() {
   }, [router])
 
   return (
-    <main>
-      <h1>Redirecting to chatUp...</h1>
-      <Link href="/data/base" as={`/data/base`}><button>Go to chatUp</button></Link>
+    <main className='redirect-main'>
+      <h1 className='redirect'>Redirecting to chatUp...</h1>
     </main>
   )
 }
