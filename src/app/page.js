@@ -18,6 +18,18 @@ export default function Home() {
 
   router.push("/data/base")*/
 
+  const router = useRouter()
+
+  useEffect(() => {
+    let ignore = false;
+    if (!ignore) {
+      router.push('/data/base')
+    }
+    return () => {
+      ignore = true;
+    }
+  }, [router])
+
   return (
     <main>
       <h1>Redirecting to chatUp...</h1>
