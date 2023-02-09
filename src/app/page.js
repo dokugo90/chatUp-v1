@@ -25,7 +25,7 @@ export default function Home() {
   useEffect(() => {
     let ignore = false;
     if (!ignore) {
-      router.push('/data/base')
+      router.push('/chat')
     }
     return () => {
       ignore = true;

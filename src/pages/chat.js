@@ -247,4 +247,3 @@ export default function Home() {
 }
 
 const app = initializeApp(firebaseConfig);
-
