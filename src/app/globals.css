@@ -1,0 +1,205 @@
+.animate {
+  animation: fade 2s alternate 1;
+  color: white;
+}
+
+body {
+  margin: 0;
+  background-color: #242424;
+  user-select: none;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#text-messages {
+  overflow-y: auto;
+  height: 400px;
+  width: clamp(270px, 35%, 400px);
+  background-color: white;
+  color: black;
+  padding: 10px;
+  overflow-x: hidden;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  /*box-shadow: 0px 10px 0px rgba(255, 255, 255, 0.8);*/
+}
+
+.flex {
+ display: flex;
+ justify-content: center;
+}
+
+nav {
+  background-color: rgba(7, 110, 236, 0.927);
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      position: relative;
+      top: 0;
+      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      margin-bottom: 50px;
+}
+
+nav .title {
+  font-size: 25px;
+  font-weight: bolder;
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: auto;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.send-input-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: clamp(270px, 35%, 400px);
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.send-input-field-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: black;
+  width: clamp(270px, 35%, 400px) + 121px;
+  overflow-x: auto;
+}
+
+.message-text {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.message-info {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+}
+
+.message-sender {
+  margin-top: -35px;
+  font-size: 14px;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.delete-btn {
+  color: red;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.account-flex {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+
+
+.delete-flex {
+  display: flex;
+  margin-left: auto;
+}
+
+.sign-in-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  background-color: transparent;
+  font-weight: bolder;
+  padding: .5em .5em;
+  transition: .1s;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.sign-in-btn:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.one {
+  color: #4885ED;
+}
+.two {
+  color: #db3236;
+}
+.three {
+  color: #f4c20d;
+}
+.five {
+  color: #3cba54;
+}
+
+svg {
+  animation: rotate 1s alternate infinite;
+  transition: .2s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-26deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-26deg);
+  }
+}
+
+#no-internet-snackbar,
+#connected-snackbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  text-align: center;
+  background-color: red;
+  color: #000;
+  font-size: 14px;
+}
+
+#connected-snackbar {
+  background-color: green;
+  color: #fff;
+}
+
+.send-btn {
+  
+}
+
+
+
+
