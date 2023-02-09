@@ -14,13 +14,14 @@ import { useRouter } from 'next/navigation';
 const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
 
-  const router = useRouter();
+  /*const router = useRouter();
 
-  router.push("/data/base")
+  router.push("/data/base")*/
 
   return (
     <main>
       <h1>Redirecting to chatUp...</h1>
+      <Link href="/data/base" as={`/data/base`}><button>Go to chatUp</button></Link>
     </main>
   )
 }
