@@ -80,6 +80,8 @@ img {
   background-color: white;
   padding: 10px;
   margin-bottom: 100px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .send-input-field-flex {
