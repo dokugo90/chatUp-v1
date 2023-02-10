@@ -49,6 +49,9 @@ export default function Home() {
   const router = useRouter();
   const timer = useRef();
   const [signedIn, isSignedIn] = useState(false);
+  const [spamPrev, setSpamPrev] = useState(false);
+  const delay = useRef();
+
 
 
   const firestore = getFirestore();
@@ -66,9 +69,39 @@ export default function Home() {
       }).catch((err) => {
         alert(err)
       })
+      setSpamPrev(true);
+      isSignedIn(false)
     }
     //setText("");
   }
+
+  function handleDelay() {
+     delay.current = setTimeout(() => {
+       isSignedIn(true);
+       setSpamPrev(false);
+      }, 5000)
+    
+  }
+
+  function handleClearTime() {
+    clearTimeout(delay.current);
+  }
+
+  useEffect(() => {
+    let ignore = false;
+
+    if (!ignore) {
+      if (spamPrev) {
+        handleDelay()
+      } else {
+        handleClearTime()
+      }
+      //handleDelay()
+    }
+    return () => {
+      ignore = true;
+    }
+  })
 
   function deleteUser(userDoc) {
     deleteDoc(doc(getFirestore(), `user/${userDoc}`))
@@ -114,7 +147,7 @@ export default function Home() {
     return () => {
       ignore = true;
     }
-  })
+  }, [])
 
 
   useEffect(() => {
@@ -134,7 +167,7 @@ export default function Home() {
                 text: change.doc.data().name,
                 id: change.doc.id,
                 date: change.doc.data().time,
-                useremail: change.doc.data().usermail, 
+                useremail: change.doc.data().usermail,
                 userId: change.doc.data().uniqueId
               })
               setInfo([...arr.current])
@@ -267,7 +300,12 @@ export default function Home() {
       <div className='send-input-field'>
       <TextField onChange={e => setText(e.target.value)} style={{width: 200}} id="standard-basic" label="Message" placeholder='Enter Message' variant="standard" />
     <button title='Send' disabled={!signedIn} style={{backgroundColor: "rgba(7, 110, 236, 0.927)"}} onClick={() => sendMessage()} className="send-btn">
-  Send
+  {
+    signedIn 
+    ?
+    "Send"
+    : "Wait"
+  }
 </button>
     </div>
     </div>
