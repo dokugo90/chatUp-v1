@@ -8,7 +8,7 @@
 body {
   margin: 0;
   background-color: #242424;
-  user-select: none;
+  
   font-family: 'Cabin', sans-serif;
 }
 
@@ -104,6 +104,13 @@ img {
 
 .message-text {
   font-size: 15px;
+  margin-top: 40px;
+}
+
+.user-link {
+  color: rgba(7, 110, 236, 0.927);
+  font-size: 15px;
+  margin-bottom: 20px;
   margin-top: 40px;
 }
 

@@ -285,7 +285,11 @@ export default function Home() {
           <div key={item.id} className='message animate'>
             <img key={item.id} src={item.photo}></img>
             <div className='message-info'>
-          <h3 className='message-text' key={item.id}>{item.text.trim()}</h3>
+              {
+                !item.text.includes("http") && !item.text.includes(".") && !item.text.includes("/") || !item.text.includes("https") && !item.text.includes(".") && !item.text.includes("/") ?
+                <h3 className='message-text' key={item.id}>{item.text.trim()}</h3>
+                : <a className='user-link' href={`${item.text}`} target='_blank' rel="noreferrer">{item.text}</a>
+              }
           <p className='message-sender' key={item.id}>{item.user}</p>
           </div>
           {
