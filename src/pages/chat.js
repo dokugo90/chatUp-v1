@@ -51,10 +51,11 @@ export default function Home() {
   const [signedIn, isSignedIn] = useState(false);
   const [spamPrev, setSpamPrev] = useState(false);
   const delay = useRef();
+  const delayOne = useRef();
 
 
 
-  const firestore = getFirestore();
+  const firestore = getFirestore(); 
   //const usersRef = firestore.collection("users")
 
   function sendMessage() {
@@ -75,6 +76,12 @@ export default function Home() {
     //setText("");
   }
 
+  function handleClearText() {
+    delayOne.current = setTimeout(() => {
+      setText("");
+    }, 100)
+  }
+
   function handleDelay() {
      delay.current = setTimeout(() => {
        isSignedIn(true);
@@ -85,6 +92,7 @@ export default function Home() {
 
   function handleClearTime() {
     clearTimeout(delay.current);
+    clearTimeout(delayOne.current);
   }
 
   useEffect(() => {
@@ -93,6 +101,7 @@ export default function Home() {
     if (!ignore) {
       if (spamPrev) {
         handleDelay()
+        handleClearText()
       } else {
         handleClearTime()
       }
@@ -114,21 +123,21 @@ export default function Home() {
         await signInWithPopup(getAuth(), provider)
       },
       authState: async function() {
-        onAuthStateChanged(getAuth(), () => {
-          if (getAuth().currentUser != null) {
-                setUsername(getAuth().currentUser.displayName)
-                setProfilePic(getAuth().currentUser.photoURL)
-                setEmail(getAuth().currentUser.email);
-                setUuid(getAuth().currentUser.uid);
-                isSignedIn(true);
-          } else {
-            setUsername("")
-            setProfilePic("https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg");
-            setEmail("");
-            setUuid("")
-            isSignedIn(false);
-          }
-        })
+          onAuthStateChanged(getAuth(), (user) => {
+            if (getAuth().currentUser != null) {
+                  setUsername(getAuth().currentUser.displayName)
+                  setProfilePic(getAuth().currentUser.photoURL)
+                  setEmail(getAuth().currentUser.email);
+                  setUuid(getAuth().currentUser.uid);
+                  isSignedIn(true);
+            } else {
+              setUsername("")
+              setProfilePic("https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg");
+              setEmail("");
+              setUuid("")
+              isSignedIn(false);
+            }
+          })
       },
       signUserOut: async function() {
         signOut(getAuth());
@@ -298,7 +307,7 @@ export default function Home() {
     </div>
     <div className='send-input-field-flex'>
       <div className='send-input-field'>
-      <TextField onChange={e => setText(e.target.value)} style={{width: 200}} id="standard-basic" label="Message" placeholder='Enter Message' variant="standard" />
+      <TextField value={text} onChange={e => setText(e.target.value)} style={{width: 200}} id="standard-basic" label="Message" placeholder='Enter Message' variant="standard" />
     <button title='Send' disabled={!signedIn} style={{backgroundColor: "rgba(7, 110, 236, 0.927)"}} onClick={() => sendMessage()} className="send-btn">
   {
     signedIn 
