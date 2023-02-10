@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <main className='redirect-main'>
-      <h1 className='redirect'>Redirecting to chatUp...</h1>
+      <h1 className='redirect'>Redirecting to ChatUp<span className='pOne'>.</span><span className='pTwo'>.</span><span className='pThree'>.</span></h1>
     </main>
   )
 }
