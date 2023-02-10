@@ -54,17 +54,20 @@ export default function Home() {
   const firestore = getFirestore();
   //const usersRef = firestore.collection("users")
 
-  function createUser() {
-    addDoc(collection(firestore, 'user',), {
-      user: username,
-      pfp: profilePic,
-      usermail: email,
-      uniqueId: uuid,
-      name: text,
-      time: serverTimestamp()
-    }).catch((err) => {
-      alert(err)
-    })
+  function sendMessage() {
+    if (text != "") {
+      addDoc(collection(firestore, 'user',), {
+        user: username,
+        pfp: profilePic,
+        usermail: email,
+        uniqueId: uuid,
+        name: text,
+        time: serverTimestamp()
+      }).catch((err) => {
+        alert(err)
+      })
+    }
+    //setText("");
   }
 
   function deleteUser(userDoc) {
@@ -161,7 +164,42 @@ export default function Home() {
     return () => {
       ignore = true;
     }
-  })
+  }, [])
+
+  const handleKeyDown = e => {
+    if (e.keyCode === 13) {
+      sendMessage()
+    }
+  };
+
+  useEffect(() => {
+    let ignore = false;
+    if (typeof document !== "undefined" && !ignore) {
+      document.addEventListener("keydown", handleKeyDown)
+    }
+    return () => {
+      ignore = true;
+      document.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [text])
+
+  function lert() {
+    alert(text)
+  }
+
+  /*function MyComponent() {
+    useEffect(() => {
+      function handleKeyDown(e) {
+        if (e.keyCode === 13) {
+          sendMessage();
+        }
+      }
+      document.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+      };
+    }, []);
+  }*/
 
   /*if (offline) {
     timer.current = setTimeout(() => {
@@ -175,9 +213,9 @@ export default function Home() {
     <>
     <script src="/node_modules/material-design-lite/material.min.js" defer></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+{/*<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>*/}
     <main>
       <nav>
         <ul>
@@ -205,7 +243,7 @@ export default function Home() {
           <div key={item.id} className='message animate'>
             <img key={item.id} src={item.photo}></img>
             <div className='message-info'>
-          <h3 className='message-text' key={item.id}>{item.text}</h3>
+          <h3 className='message-text' key={item.id}>{item.text.trim()}</h3>
           <p className='message-sender' key={item.id}>{item.user}</p>
           </div>
           {
@@ -228,7 +266,7 @@ export default function Home() {
     <div className='send-input-field-flex'>
       <div className='send-input-field'>
       <TextField onChange={e => setText(e.target.value)} style={{width: 200}} id="standard-basic" label="Message" placeholder='Enter Message' variant="standard" />
-    <button title='Send' disabled={!signedIn} style={{backgroundColor: "rgba(7, 110, 236, 0.927)", marginTop: 10}} onClick={() => createUser()} className="send-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+    <button title='Send' disabled={!signedIn} style={{backgroundColor: "rgba(7, 110, 236, 0.927)"}} onClick={() => sendMessage()} className="send-btn">
   Send
 </button>
     </div>

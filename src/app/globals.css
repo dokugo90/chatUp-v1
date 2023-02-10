@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=Martian+Mono:wght@800&family=Oswald:wght@600&family=Space+Mono&display=swap');
+
 .animate {
   animation: fade 2s alternate 1;
   color: white;
@@ -7,6 +9,7 @@ body {
   margin: 0;
   background-color: #242424;
   user-select: none;
+  font-family: 'Cabin', sans-serif;
 }
 
 @keyframes fade {
@@ -90,12 +93,16 @@ img {
   gap: 10px;
   color: black;
   width: clamp(270px, 35%, 400px) + 121px;
-  overflow-x: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow-x: hidden;
+  border-bottom: .2px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 0px;
 }
 
 .message-text {
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 40px;
 }
 
 .message-info {
@@ -105,7 +112,7 @@ img {
 }
 
 .message-sender {
-  margin-top: -35px;
+  margin-top: 0px;
   font-size: 14px;
   font-weight: bolder;
   color: rgba(0, 0, 0, 0.5);
@@ -260,6 +267,14 @@ svg {
 .pThree {
   animation-delay: 0.6s;
   background-color: #333;
+}
+
+.send-btn {
+  margin-top: 20px;
+  border: none;
+  padding: 7px 15px;
+  font-weight: bolder;
+  cursor: pointer;
 }
 
 
