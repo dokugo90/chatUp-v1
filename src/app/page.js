@@ -20,17 +20,17 @@ export default function Home() {
 
   router.push("/data/base")*/
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     let ignore = false;
     if (!ignore) {
       router.push('/chat')
-    }
+    };
     return () => {
       ignore = true;
-    }
-  }, [router])
+    };
+  }, [router]);
 
   return (
     <main className='redirect-main'>

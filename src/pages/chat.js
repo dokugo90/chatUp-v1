@@ -167,7 +167,7 @@ export default function Home() {
   }, [])
 
   const handleKeyDown = e => {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && email != "") {
       sendMessage()
     }
   };
